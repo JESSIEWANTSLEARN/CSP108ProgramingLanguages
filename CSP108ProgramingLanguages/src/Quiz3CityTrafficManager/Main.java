@@ -1,5 +1,5 @@
 package Quiz3CityTrafficManager;
-
+import java.util.Scanner;
 //4. Main Execution
 public class Main {
  public static void main(String[] args) {
@@ -19,4 +19,4 @@ public class Main {
      sc.close();
  }
 
-is this best 
+}
