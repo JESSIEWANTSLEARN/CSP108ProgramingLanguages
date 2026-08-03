@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Inventory {
 	
 	private ArrayList  <Item> items = new ArrayList<>();
+	
 
 	
 	
@@ -26,12 +27,15 @@ public class Inventory {
 		    if (items.isEmpty()) {
 		        System.out.println("Nothing in here");
 		    } else {
+		    	int count = 1;
 		        for (Item i : items) {
-		            System.out.println("Item name " + i.getName());
+		            System.out.println("Item name " +count+"."+ i.getName());
 		            System.out.println("Description Item " + i.getDescription());
+		            count++;
 		        }
 		    }
 		}
+	
   
   
   public ArrayList<Item> getItems() {

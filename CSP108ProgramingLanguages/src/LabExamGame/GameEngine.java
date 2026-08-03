@@ -77,19 +77,24 @@ public class GameEngine {
                 checkSpecialLocations(randomLines);
             } else if (choice == 2) {
                 displayStats();
-            } else if (choice == 4) {                      // ADD THIS BLOCK
+            } else if (choice == 4) {                      //  new function
                 player.getInventory().display();
 
-                if (!player.getInventory().getItems().isEmpty()) {
-                    System.out.println("Use an item? (1. Yes  2. No)");
+                   if(!player.getInventory().getItems().isEmpty()  ) {
+                System.out.println("Use an item? (1. Yes  2. No)");
                     int useChoice = getValidInput(1, 2);
 
                     if (useChoice == 1) {
-                        System.out.println("Enter item number:");
-                        int itemNum = getValidInput(1, player.getInventory().getItems().size());
+                        System.out.println("Enter item name to use:");
+                        String itemName = scanner.nextLine();
 
-                        Item chosen = player.getInventory().getItems().get(itemNum - 1);
-
+                        Item chosen = null;
+                        for (Item i : player.getInventory().getItems()) {
+                            if (i.getName().equalsIgnoreCase(itemName)) {
+                                chosen = i;
+                                break;
+                            }
+                        }
                         if (chosen.getName().equals("Potion")) {
                             player.setHp(player.getHp() + 20);
                             player.getInventory().removedItem(chosen);
@@ -299,7 +304,8 @@ public class GameEngine {
             if (scanner.hasNextInt()) {
                 int input = scanner.nextInt();
                 scanner.nextLine();
-                if (input >= min && input <= max) return input;
+                if (input >= min && input <= max)
+                	return input;
             } else {
                 scanner.nextLine();
             }
