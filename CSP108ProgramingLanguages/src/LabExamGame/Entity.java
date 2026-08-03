@@ -43,8 +43,10 @@ public abstract class Entity {
     public int getHp() { return hp; }
     public void setHp(int hp) { this.hp = Math.max(0, Math.min(maxHp, hp)); }
     public int getMaxHp() { return maxHp; }
-    public int getMp() { return mp; }
-    public void setMp(int mp) { this.mp = Math.max(0, Math.min(maxMp, mp)); }
+    public int getMp() { 
+    	return mp; }
+    public void setMp(int mp) {
+    	this.mp = Math.max(0, Math.min(maxMp, mp)); }
     public int getMaxMp() { return maxMp; }
     public int getAtk() { return atk; }
     public int getDef() { return def; }

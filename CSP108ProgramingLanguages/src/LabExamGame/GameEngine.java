@@ -16,6 +16,8 @@ public class GameEngine {
     private int orcDefeated = 0;
     private int dragonDefeated = 0;
     private int bossDefeated = 0;
+    
+    
 
     public void start() {
         displayMetadata();
@@ -64,7 +66,9 @@ public class GameEngine {
             System.out.println("1. Walk (Move Around)");
             System.out.println("2. Check Stats & Trophies");
             System.out.println("3. Exit Game");
-            int choice = getValidInput(1, 3);
+            System.out.println("4.Inventory");
+            
+            int choice = getValidInput(1, 4);
 
             if (choice == 3) break;
 
@@ -73,9 +77,40 @@ public class GameEngine {
                 checkSpecialLocations(randomLines);
             } else if (choice == 2) {
                 displayStats();
+            } else if (choice == 4) {                      // ADD THIS BLOCK
+                player.getInventory().display();
+
+                if (!player.getInventory().getItems().isEmpty()) {
+                    System.out.println("Use an item? (1. Yes  2. No)");
+                    int useChoice = getValidInput(1, 2);
+
+                    if (useChoice == 1) {
+                        System.out.println("Enter item number:");
+                        int itemNum = getValidInput(1, player.getInventory().getItems().size());
+
+                        Item chosen = player.getInventory().getItems().get(itemNum - 1);
+
+                        if (chosen.getName().equals("Potion")) {
+                            player.setHp(player.getHp() + 20);
+                            player.getInventory().removedItem(chosen);
+                            System.out.println("Used " + chosen.getName() + "! Restored 20 HP.");
+                        }  else if(chosen.getName().equals("Mana")) {
+                            	player.setMp(player.getMp()+20);
+                                player.getInventory().removedItem(chosen);
+                                System.out.println("Used " + chosen.getName() + "! Restored 20 MP.");
+
+                            
+                            
+                        } else {
+                            System.out.println("Nothing happens.");
+                        }
+                    }
+                }
+                
+            }
             }
         }
-    }
+    
 
     private void handleMovement() {
         System.out.println("\nChoose direction to walk:");
@@ -147,13 +182,16 @@ public class GameEngine {
         } else {
             System.out.println("\nA wild " + enemy.getName() + " appeared!");
         }
+        
 
         while (player.getHp() > 0 && enemy.getHp() > 0) {
             System.out.println("\n" + player.getName() + " HP: " + player.getHp() + "/" + player.getMaxHp() + " | MP: " + player.getMp() + "/" + player.getMaxMp());
             System.out.println(enemy.getName() + " HP: " + enemy.getHp() + "/" + enemy.getMaxHp());
             System.out.println("1. Fight\n2. Run");
+            
 
             if (getValidInput(1, 2) == 2) {
+            	
                 if (forcedType == 3) {
                     System.out.println("Bading yarn? You cannot run away from a Boss Battle! Fight or die!");
                 } else if (random.nextBoolean()) {
@@ -221,6 +259,8 @@ public class GameEngine {
             
             // Apply rewarded experience back to player instance
             player.gainExp(expReward);
+            player.getInventory().addItem(new Item("Potion", "Restores HP"));
+
         }
     }
 
@@ -249,6 +289,9 @@ public class GameEngine {
         System.out.println(" Total Defeated   : " + totalDefeated);
         System.out.println("=========================================");
     }
+    
+    
+    
 
     private int getValidInput(int min, int max) {
         while (true) {

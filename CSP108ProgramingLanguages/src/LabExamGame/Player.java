@@ -4,7 +4,9 @@ package LabExamGame;
 	    private String playerClass;
 	    private String skillName, ultName;
 	    private int skillCost, ultCost;
-	    
+	    private Inventory inventory = new Inventory();
+
+
 	    // --- LEVELING VARIABLES ---
 	    private int level;
 	    private int exp;
@@ -16,8 +18,14 @@ package LabExamGame;
 	        this.exp = 0;
 	        this.nextLevelExp = 50; // Initial EXP requirement to reach level 2
 	        setupClass(classChoice);
+	        inventory.addItem(new Item("Potion", "Restores HP"));
+	        inventory.addItem(new Item("Mana", "Restores Mana"));
+
+
 	    }
 
+	    
+	    
 	    private void setupClass(int choice) {
 	        if (choice == 1) {
 	            this.playerClass = "Warrior";
@@ -130,6 +138,9 @@ package LabExamGame;
 	    public int getLevel() { return level; }
 	    public int getExp() { return exp; }
 	    public int getNextLevelExp() { return nextLevelExp; }
+	    
+	    public Inventory getInventory() {
+	    	return inventory; }
 
 	    public String getPlayerClass() { return playerClass; }
 	    public String getSkillName() { return skillName; }
