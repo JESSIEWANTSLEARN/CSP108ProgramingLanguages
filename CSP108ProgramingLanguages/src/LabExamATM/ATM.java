@@ -16,9 +16,22 @@ private float balanced;
   public void withDrawal() {
 	  System.out.println("Enter Amount Deposit");
 		 float withdraw =input.nextFloat();
-		 balanced -= withdraw;
-	  
-  }
+		 if(withdraw > balanced) {
+			 System.out.println("YOUR balanceds is not enough"+balanced);
+			 
+		 }else if(withdraw <= 0 ) {
+				 System.out.println("its not VALID ");
+	
+		 }else {
+	 balanced -= withdraw;
+	 System.out.println("Your money that release successfully"+withdraw);
+		 
+	 }
+		 }
+		 
+ 
+		 
+ 
 
 public void checkBalance() {
 	System.out.println("Balance"+balanced);
@@ -32,6 +45,10 @@ public void menu () {
 	while(Loop) {
 System.out.println("Menu");
 
+System.out.println("Enter you Insert Your card");
+System.out.println("Enter the Pin Number");
+
+System.out.println("Welcome to ATM MACHINE");
 System.out.println("1:deposit");
 System.out.println("2:withDrawal");
 System.out.println("3:checkBalance");
