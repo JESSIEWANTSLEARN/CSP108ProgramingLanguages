@@ -1,0 +1,63 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.Scanner;
+class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        float balanced = 0;
+        
+        boolean Loop = true;
+        
+        while(Loop){
+        System.out.println("ATM MACHINE");
+         System.out.println("Enter the Pin Number");
+         System.out.println("SUCCESS");
+         
+                 System.out.println("[1]Deposit");
+        System.out.println("[2]Withdraw");
+        System.out.println("[3]Check Balanced");
+         int choice =input.nextInt();
+         
+         switch (choice){
+             
+             case 1:
+                 System.out.println("Enter the amount Deposit");
+                 float deposit =input.nextFloat();
+                 balanced += deposit;
+                 System.out.println("Successfully added balanced"+balanced);
+                 
+                 break;
+                 
+                 
+                 case 2:
+          System.out.println("Enter the amount Withdraw");
+                 float withdraw =input.nextFloat();
+               if(withdraw <=0){
+                System.out.println("Not enough balanced");
+                 }else{
+                 balanced -= withdraw;
+        System.out.println("Successfullywithd " +balanced);
+                 }
+                 break;
+                     case 3:
+                         System.out.println("CURRENT BALANCED"+balanced);
+                         
+                         break;
+                         
+                         case 4:           
+                             System.out.println("Exit");
+            Loop = false;
+            
+            default:
+            System.out.println("WRONG INPUTS");
+             
+         }
+         
+         
+         
+         
+         
+
+}
+    }
+}
